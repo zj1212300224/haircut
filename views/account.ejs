@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/account.css' />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="intro">
+        本店共有<span> <%=userInfor.length%></span>名VIP <br>
+        <%
+          if(accInfor.length!=0)
+          {
+            var cz = accInfor[0].totalCZ;
+            var xf = accInfor[0].totalXF;
+          }
+          else
+          {
+            var cz = 0;
+            var xf = 0;
+          }
+
+        %>
+        总充值金额：<%=cz%>元 <br>
+        总消费金额：<%=xf%>元
+      </div>
+      <div>
+        <table align="center" class="infoContent">
+            <caption>  我的VIP们 </caption>
+            <tr>
+              <th>卡号</th>
+              <th>用户名</th>
+              <th>手机号</th>
+              <th>余额</th>
+              <th>注册日期</th>
+            </tr>
+           <% 
+           for(var i = 0; i<userInfor.length ;i++) 
+            {
+            %>
+              <tr>
+                <td><%=userInfor[i].id %> </td>
+                <td><%=userInfor[i].name %> </td>
+                <td><%=userInfor[i].tel %> </td>    
+                <td><%=userInfor[i].monLeft %> </td>
+                <td><%=userInfor[i].rgData.getFullYear() %>-<%=userInfor[i].rgData.getMonth()+1%>-<%=userInfor[i].rgData.getDate() %> </td>
+              </tr>
+
+              <%
+            }
+           %>
+         </table>
+      </div>
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+  </body>
+</html>

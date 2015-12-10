@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="40;url=index"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/account.css' />
+    <style>
+      button {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+        outline: 0;
+        z-index: 21;
+        background-color: white;
+        border: 0;
+        margin: 20px 0px;
+        padding: 10px 15px;
+        color: #53e3a6;
+        border-radius: 3px;
+        width: 250px;
+        cursor: pointer;
+        font-size: 18px;
+        -webkit-transition-duration: 0.25s;
+                transition-duration: 0.25s;
+      }
+      .wrapper {
+        height: 250px;
+        margin-top: -200px;
+      }
+      .container {
+        text-align: center;
+        height: 250px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px 0;
+      }
+      button:hover {
+        background-color: #f5f7f9;
+        border:1px solid #DDD;
+        box-shadow: 0 0 8px #DDD;
+        -moz-box-shadow:0 0 8px #DDD;
+        -webkit-box-shadow:0 0 8px #DDD;
+      }
+      .result{
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container" >
+        <p class="result"><%=result%></p>   
+        <button  type='button' id="back">回到主页</button>
+        <p>将在<span id="mes">5</span>秒后自动跳转到主页</p>
+      </div><!-- container -->
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+        $('#back').click(function(event){
+          window.location = 'index';
+        });
+      });     
+      var i = 5;
+      var intervalid;
+      intervalid = setInterval("fun()", 1000);
+      function fun() {
+        if (i == 0) {
+          window.location.href = "index";
+           clearInterval(intervalid);
+        }
+        document.getElementById("mes").innerHTML = i;
+        i--;
+      } 
+    </script>
+  </body>
+</html>
+

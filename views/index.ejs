@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+          <a href="add">加入VIP</a>
+          <a href="account ">我的账户</a>    
+      </div>
+      <div class="container">
+          
+          <input type="text" id="tel" placeholder="VIP用户的手机号" >
+          <div class="botton">
+            <ul>
+              <li onclick="doWhat()">会员充值/消费</li>
+              <li onclick="detail()">查询会员信息</li>
+              <li onclick="del()">删除会员</li>
+            </ul>
+          </div>
+      </div>
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    
+
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+    <script>
+      var tel="";
+      function del(){
+        check('del');
+      }
+      function doWhat(){
+          check('doWhat');
+      }
+      function detail(){
+        check('detail');
+      }
+      function check(flag){
+        tel = eval(document.getElementById('tel')).value;
+        if(!<%=isLogin%>)
+        {  
+          alert("您还未登陆，请先登录！");
+          window.location ='/'; 
+        }
+        else if(tel==""||tel.length!=11)
+          alert("您忘记VIP的手机号了");
+        else
+        {
+          var xmlhttp;
+          if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp=new XMLHttpRequest();
+            }
+          else
+            {// code for IE6, IE5
+             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          xmlhttp.onreadystatechange=function()
+          {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+              {
+                //存在
+                if(xmlhttp.responseText =='success')
+                {
+                  if(flag=='del')//如果是删除用户 操作
+                  {
+                    var r = confirm("确定删除用户"+tel);
+                    if(r==true)//确定删除，则继续删除。取消则不操作
+                      window.location = flag+'?tel='+tel; 
+                  }
+                  else//其余操作直接重定位
+                    window.location = flag+'?tel='+tel;        
+                }
+                else
+                {
+                  alert('该用户不存在');
+                }
+              }
+          }
+          xmlhttp.open("GET","check?tel="+tel,true);
+          xmlhttp.send();   
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+ul,li{
+   padding: 0;
+   margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+li{
+	list-style: outside none none;
+}

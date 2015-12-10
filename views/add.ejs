@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <style>
+      .container{
+        padding: 40px 0;
+      }
+      .wrapper {
+        margin-top: -260px;
+        height: 500px;
+      }
+      h1{
+        margin-bottom: 15px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <section id="content">
+          <form action="add" method="post">
+              <h1>JOIN VIP</h1>
+              <div>
+                  <input type="text" placeholder="卡号" required="" id="userId" name="cardId" />
+              </div>
+              <div>
+                  <input type="text" placeholder="姓名" required="" id="name" name="name"/>
+              </div>
+              <div>
+                  <input type="text" placeholder="手机号" required="" name="tel" id="tel"/>
+              </div>
+              <div>
+                  <input type="text" placeholder="首次充值金额" required="" name="money"/>
+              </div>
+               <div>
+                  <input type="text" placeholder="首次消费金额" required="" name="xiaofei"/>
+              </div>
+              <div>
+                  <button type="submit" id="re-button">注册</button>
+              </div>
+          </form><!-- form -->
+      </section><!-- content -->
+    </div><!-- container -->
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+  </div>
+  <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+  <script>
+      (function($){
+          $(document).ready(function(){
+              $("#re-button").click(function() {
+                 var tel =  $.trim($("input[name=tel]").val());
+                  if(!<%=isLogin%>) //如果没有登陆，则要求先登录
+                  {
+                    alert("您还未登陆，请先登录！");
+                    window.location ='/'; 
+                    return false;
+                  }
+                  else if(($.trim($("input[name=tel]").val())).length!=11){
+                    alert("注册号码有误");
+                    return false;
+                  }
+                  else
+                  {
+                    var obj = $(this);
+                    $.ajax({
+                        url:'check',
+                        type:'GET',
+                        data:{tel:$.trim($("input[name=tel]").val())},
+                        dataType:'json',
+                        async:false,
+                        success:function(result) {
+                            //if(result.status == 1) {
+                              var r = confirm("注册号码为 "+tel+" , 确定提交？");
+                              if(r)
+                                obj.parents('form').submit(); //验证码正确提交表单
+                              else
+                                return false;
+                            //}
+                            // else{
+                            //     alert("注册失败，请重新注册");
+                            //     setTimeout(function(){
+                            //         $("#tel").empty();
+                            //     },3000);
+                            // }
+                        },
+                        error:function(msg){
+                            alert("该手机号已经被注册");
+                            //没起到什么效果
+                            // setTimeout(function(){
+                            //   $("#tel").empty();
+                            // },3000);
+                        }
+                    })
+                    return false;
+                  }
+              })
+        });
+      })(jQuery);
+
+  </script>
+  </body>
+</html>

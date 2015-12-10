@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <style>
+      .container{
+        padding: 20px 0 30px 0;
+      }
+      .wrapper {
+        margin-top: -240px;
+      }
+      .user{
+        margin:20px 0 0 30px;
+        font-size: 17px;
+      }
+      .money{
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+        <div class="user">
+          VIP：<%=userInfor.name%> <br> 
+          卡号：<%=userInfor.id%> <br> 
+          手机号：<%=userInfor.tel%> <br> 
+          账户余额：<%=userInfor.monLeft%> 元<br>
+        </div>
+        <div class="container">
+          <form action="doWhat" method="post" name="form">
+            <div class="money"> 充值金额（单位：元）</div>
+            <input type="text" placeholder="若无则填0" required="" id="cz" name="cz" /> 
+            <div class="money"> 消费金额（单位：元）</div>
+            <input type="text" placeholder="若无则填0" required="" id="xf" name="xf"/>      
+                      <input type="hidden" value="<%=userInfor.monLeft%>" name="ye"/> 
+                      <button type="submit" id="confirm-button">确定</button>
+          </form>
+        </div>
+        <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+    <script>
+      (function($){
+          $(document).ready(function(){
+              $("#confirm-button").click(function() {
+                  if(!<%=isLogin%>) //如果没有登陆，则要求先登录
+                  {
+                    alert("您还未登陆，请先登录！");
+                    window.location ='/'; 
+                    return false;
+                  }
+                  else{
+                    var r = confirm(+$("#cz").val()+'元充值，'+$("#xf").val()+'元消费，确定提交？');
+                    return r;
+                  }
+              })
+        });
+      })(jQuery);
+
+  </script>
+  </body>
+</html>

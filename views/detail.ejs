@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/account.css' />
+    <style>
+      .intro{
+        margin-left: 30px;
+      }
+      table.infoContent {
+        width: 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="intro">
+        VIP：<%=userInfor.name%> <br> 
+        卡号：<%=userInfor.id%> <br> 
+        手机号：<%=userInfor.tel%> <br> 
+        账户余额：<%=userInfor.monLeft%> 元<br>
+      </div>
+      <div>
+        <table align="center" class="infoContent">
+            <caption>  充值/消费记录</caption>
+            <tr>
+              <th>账单</th>
+              <th>日期</th>
+            </tr>
+           <% 
+           var record = userInfor.recorder;
+           var flag;
+           for(var i = 0; i<record.length ;i++) 
+            {
+              if(record[i].isCZ=='1')
+                flag="+";
+              else
+                flag="-";
+            %>
+              <tr>    
+                <td><%=flag+record[i].money %> </td>
+                <td><%=record[i].date.getFullYear() %>-<%=record[i].date.getMonth()+1%>-<%=record[i].date.getDate() %> </td>
+              </tr>
+
+              <%
+            }
+           %>
+        </table>
+        
+      </div>
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+
+  </body>
+</html>

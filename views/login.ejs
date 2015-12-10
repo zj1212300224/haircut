@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>飞短流长</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container" >
+        <section id="content">
+            <h1>WELCOME</h1>
+            <form action="/" method="post" >
+                <div>
+                    <input type="text" placeholder="用户名" required="" id="username" name="id" />
+                </div>
+                <div>
+                    <input type="password" placeholder="密码" required="" id="password" name="pwd"/>
+                </div>
+                <div>
+                    <button type="submit" id="login-button">登录</button>
+                </div>
+            </form><!-- form -->
+             <h3><%= title %></h3>  
+        </section><!-- content -->
+      </div><!-- container -->
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+    $('#login-button').click(function(event){
+      //event.preventDefault();
+      //$('form').fadeOut(3000);
+    });
+    </script>
+  </body>
+</html>
+
